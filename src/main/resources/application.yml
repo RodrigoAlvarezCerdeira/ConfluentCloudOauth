@@ -1,0 +1,31 @@
+spring:
+  kafka:
+    bootstrap-servers: pkc-lz6r3.northeurope.azure.confluent.cloud:9092
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required
+            clientId='30c2b5a9-dda7-4d08-ab04-75f56f610a42'
+            clientSecret='kO18Q~MIYiKi9A8q7JfEUkMSRlZFc0AHbvgbocKF'
+            scope='.default'
+            extension_logicalCluster='lkc-5wzwr2'
+            extension_identityPoolId='pool-VBk6';
+        mechanism: OAUTHBEARER
+        login:
+          callback:
+            handler:
+              class: org.apache.kafka.common.security.oauthbearer.secured.OAuthBearerLoginCallbackHandler
+        oauthbearer:
+          token:
+            endpoint:
+              url: https://login.microsoftonline.com/5cc6c66d-ffb2-469f-9385-cda840e57836/oauth2/v2.0/token
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
